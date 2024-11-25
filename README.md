@@ -21,3 +21,6 @@ Currently, two official plugins are available:
 - npm install -D tailwindcss postcss autoprefixer
 - npx tailwindcss init -p
 
+## For routing:
+
+- React router dom package (**-** npm install react-router dom)
