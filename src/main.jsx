@@ -5,11 +5,14 @@ import App from "./App.jsx";
 
 // importing react router dom after installing the package.
 import { BrowserRouter } from "react-router";
+import PlayerContextProvider from "./context/PlayerContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <PlayerContextProvider>
+        <App />
+      </PlayerContextProvider>
     </BrowserRouter>
   </StrictMode>
 );
