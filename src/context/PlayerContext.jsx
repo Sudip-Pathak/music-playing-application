@@ -39,7 +39,23 @@ const PlayerContextProvider = (props) => {
     setPlayStatus(true);
   };
 
-  // Function to play music as per the id in the seekbar
+  // Finction to go to previous track.
+  const previous = async () => {
+    if (track.id > 0) {
+      await setTrack(songsData[track.id - 1]);
+      await audioRef.current.play();
+      setPlayStatus(true);
+    }
+  };
+
+  // Function to go to next track
+  const next = async () => {
+    if (track.id < songsData.length - 1) {
+      await setTrack(songsData[track.id + 1]);
+      await audioRef.current.play();
+      setPlayStatus(true);
+    }
+  };
 
   // Function to show the time and increase time while playing the music.
   useEffect(() => {
@@ -76,6 +92,8 @@ const PlayerContextProvider = (props) => {
     play,
     pause,
     playWithId,
+    previous,
+    next,
   };
   return (
     <PlayerContext.Provider value={contextValue}>
