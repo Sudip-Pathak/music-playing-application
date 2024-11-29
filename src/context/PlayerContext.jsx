@@ -32,6 +32,15 @@ const PlayerContextProvider = (props) => {
     setPlayStatus(false);
   };
 
+  // Playing the song using the song id.
+  const playWithId = async (id) => {
+    await setTrack(songsData[id]);
+    await audioRef.current.play();
+    setPlayStatus(true);
+  };
+
+  // Function to play music as per the id in the seekbar
+
   // Function to show the time and increase time while playing the music.
   useEffect(() => {
     setTimeout(() => {
@@ -66,6 +75,7 @@ const PlayerContextProvider = (props) => {
     setTime,
     play,
     pause,
+    playWithId,
   };
   return (
     <PlayerContext.Provider value={contextValue}>
