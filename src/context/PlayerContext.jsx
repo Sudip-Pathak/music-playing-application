@@ -57,6 +57,13 @@ const PlayerContextProvider = (props) => {
     }
   };
 
+  // Function to seek the song in the seekbar.
+  const seekSong = async (e) => {
+    audioRef.current.currentTime =
+      (e.nativeEvent.offsetX / seekBg.current.offsetWidth) *
+      audioRef.current.duration;
+  };
+
   // Function to show the time and increase time while playing the music.
   useEffect(() => {
     setTimeout(() => {
@@ -94,6 +101,7 @@ const PlayerContextProvider = (props) => {
     playWithId,
     previous,
     next,
+    seekSong,
   };
   return (
     <PlayerContext.Provider value={contextValue}>

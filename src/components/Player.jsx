@@ -13,6 +13,7 @@ const Player = () => {
     time,
     previous,
     next,
+    seekSong
   } = useContext(PlayerContext);
 
   return (
@@ -61,13 +62,14 @@ const Player = () => {
           />
           <img className="w-4 cursor-pointer" src={assets.loop_icon} alt="" />
         </div>
+
         {/* Working for the seekbar of the song */}
         <div className="flex items-center gap-5">
           <p>
             {time.currentTime.minute}:{time.currentTime.second}
           </p>
           <div
-            ref={seekBg}
+            ref={seekBg} onClick={seekSong}
             className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer"
           >
             <hr
