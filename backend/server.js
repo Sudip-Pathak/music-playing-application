@@ -19,4 +19,4 @@ app.use(cors()); // this method connects frontend to the bacckend.
 app.use("/api/song", songRouter); // if we need the list of all songs, we go through this api path
 app.get("/", (req, res) => res.send("API Working"));
 app.listen(port, () => console.log(`Server is runing on ${port}`));
-  // 
+  // //
