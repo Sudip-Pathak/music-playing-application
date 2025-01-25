@@ -11,4 +11,3 @@ const albumModel =
   mongoose.models.album || mongoose.model("album", albumSchema);
 
 export default albumModel;
-  

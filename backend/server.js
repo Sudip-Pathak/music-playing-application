@@ -5,7 +5,7 @@ import songRouter from "./src/routes/songRoute.js";
 import connectDB from "./src/config/mongodb.js";
 import connectCloudinary from "./src/config/cloudinary.js";
 
-// app config
+// app config especially database connection.
 const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
@@ -19,4 +19,3 @@ app.use(cors()); // this method connects frontend to the bacckend.
 app.use("/api/song", songRouter); // if we need the list of all songs, we go through this api path
 app.get("/", (req, res) => res.send("API Working"));
 app.listen(port, () => console.log(`Server is runing on ${port}`));
-  // //

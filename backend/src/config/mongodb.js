@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
+  mongoose.connect.on("connected", () => {
+    console.log("connection establisjed");
+  });
 
-    mongoose.connection.on('connected', () => {
-        console.log("Connectd to Database")
-    })
-  await mongoose.connect(`${process.env.MONGODB_URI}/musicapplication`);
+  await mongoose.connect(
+    `${process.env.MONGODB_URI}/music-playing-application`
+  );
 };
 
 export default connectDB;
