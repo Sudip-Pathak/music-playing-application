@@ -1,18 +1,17 @@
 import { addSong, listSong } from "../controllers/songController.js";
 import express from "express";
-import upload from "../middleware/multer.js";
+import multer from "multer"; // Import multer directly
+import upload from "../middleware/multer.js"; // assuming this is your multer config
 
 const songRouter = express.Router();
 
-songRouter.post(
-  "/add",
-  upload,
-  fields([
-    { name: "image", maxCount: 1 },
-    { name: "audio", maxCount: 1 },
-  ]),
-  addSong
-);
+// Setup the multer fields handling correctly
+const uploadFields = multer().fields([
+  { name: "image", maxCount: 1 },
+  { name: "audio", maxCount: 1 },
+]);
+
+songRouter.post("/add", uploadFields, addSong);
 songRouter.get("/list", listSong);
 
 export default songRouter;
