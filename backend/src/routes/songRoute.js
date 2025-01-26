@@ -9,6 +9,7 @@ const songRouter = express.Router();
 const uploadFields = multer().fields([
   { name: "image", maxCount: 1 },
   { name: "audio", maxCount: 1 },
+  upload,
 ]);
 
 songRouter.post("/add", uploadFields, addSong);
