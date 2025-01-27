@@ -43,15 +43,25 @@ const addSong = async (req, res) => {
   }
 };
 
-// Controller for listing songs
+// Controller for listing all songs
 const listSong = async (req, res) => {
   try {
     const songs = await songModel.find(); // Fetch all songs from the database, allsongs
-    res.json({ success: true, data: songs }); // data = songs || songs = allsongs references.
+    res.json({ success: true, data: songs }); // data = songs || songs = allsongs references
   } catch (error) {
     console.error(error);
     res.json({ success: false, message: "Error fetching songs" });
   }
 };
 
-export { addSong, listSong };
+// Controller for deleting the songs when id is given.
+const removeSong = async (req, res) => {
+  try {
+    await songModel.findByIdAndDelete(req.body.id)
+    res.json({ success: true, message: "Song Removed" });
+  } catch (error){
+    res.json({ success: false, message: " Song Not Removed" });
+  }
+};
+
+export { addSong, listSong, removeSong };
