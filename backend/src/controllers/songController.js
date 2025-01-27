@@ -46,8 +46,8 @@ const addSong = async (req, res) => {
 // Controller for listing songs
 const listSong = async (req, res) => {
   try {
-    const songs = await songModel.find(); // Fetch all songs from the database
-    res.json({ success: true, data: songs });
+    const songs = await songModel.find(); // Fetch all songs from the database, allsongs
+    res.json({ success: true, data: songs }); // data = songs || songs = allsongs references.
   } catch (error) {
     console.error(error);
     res.json({ success: false, message: "Error fetching songs" });
