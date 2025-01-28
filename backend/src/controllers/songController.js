@@ -64,4 +64,4 @@ const removeSong = async (req, res) => {
   }
 };
 
-export { addSong, listSong, removeSong };
+export { addSong, listSong, removeSong };  // this is default export.
