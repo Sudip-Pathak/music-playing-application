@@ -25,11 +25,20 @@ const addAlbum = async (req, res) => {
 
     res.json({ suceess: true, messge: "Album Added" });
   } catch {
+    error;
     res.json({ suceess: false, message: "Song Not Added" });
   }
 };
 
-const listAlbum = async (req, resp) => {};
+// Contoller for listing all the albumdata.
+const listAlbum = async (req, res) => {
+  try {
+    const allAlbums = await albumModel.find({});
+    res.json({ success: true, albums: allAlbums });
+  } catch (error) {
+    res.json({ success: false, message: "No List of albums" });
+  }
+};
 
 const removeAlbum = async (req, res) => {};
 
