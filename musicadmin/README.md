@@ -6,3 +6,12 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## Dependencise installation.
+
+- npm install
+- npm install axios (call API)
+- npm i react-router-dom (create multiple routes on the admin pannel, using it add and display songs, albums ..)
+- npm i react-toastify ( display toast notification)
+- npm install tailwindcss @tailwindcss/vite (tailwind support)
