@@ -20,6 +20,7 @@ const addAlbum = async (req, res) => {
       image: imageUpload.secure_url,
     };
 
+    // Controller for Adding the Album.
     const album = albumModel(albumData);
     await album.save();
 
@@ -30,7 +31,7 @@ const addAlbum = async (req, res) => {
   }
 };
 
-// Contoller for listing all the albumdata.
+// Controller for listing all the album data.
 const listAlbum = async (req, res) => {
   try {
     const allAlbums = await albumModel.find({});
@@ -40,6 +41,7 @@ const listAlbum = async (req, res) => {
   }
 };
 
+// Controller for Deleting the Album.
 const removeAlbum = async (req, res) => {
   try {
     await albumModel.findByIdAndDelete(req.body.id);
