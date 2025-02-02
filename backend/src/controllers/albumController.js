@@ -20,14 +20,12 @@ const addAlbum = async (req, res) => {
       image: imageUpload.secure_url,
     };
 
-    // Controller for Adding the Album.
     const album = albumModel(albumData);
     await album.save();
 
-    res.json({ suceess: true, messge: "Album Added" });
-  } catch {
-    error;
-    res.json({ suceess: false, message: "Song Not Added" });
+    res.json({ success: true, message: "Album Added" });
+  } catch (error) {
+    res.json({ success: false, message: "Album Not Added" });
   }
 };
 
