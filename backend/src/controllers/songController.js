@@ -57,11 +57,11 @@ const listSong = async (req, res) => {
 // Controller for deleting the songs when id is given.
 const removeSong = async (req, res) => {
   try {
-    await songModel.findByIdAndDelete(req.body.id)
+    await songModel.findByIdAndDelete(req.body.id);
     res.json({ success: true, message: "Song Removed" });
-  } catch (error){
+  } catch (error) {
     res.json({ success: false, message: " Song Not Removed" });
   }
 };
 
-export { addSong, listSong, removeSong };  // this is default export.
+export { addSong, listSong, removeSong }; // this is default export.
