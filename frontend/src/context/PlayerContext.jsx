@@ -155,7 +155,7 @@ const PlayerContextProvider = (props) => {
   const url = "http://localhost:4000";
 
   const [songsData, setSongsData] = useState([]);
-  const [albumsdata, setAlbumsData] = useState([]);
+  const [albumsData, setAlbumsData] = useState([]);
   const [track, setTrack] = useState(null); // Initialize track as null
   const [playStatus, setPlayStatus] = useState(false);
   const [time, setTime] = useState({
@@ -170,41 +170,62 @@ const PlayerContextProvider = (props) => {
   });
 
   const play = () => {
-    audioRef.current.play();
-    setPlayStatus(true);
+    if (audioRef.current) {
+      audioRef.current.play();
+      setPlayStatus(true);
+    }
   };
 
   const pause = () => {
-    audioRef.current.pause();
-    setPlayStatus(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setPlayStatus(false);
+    }
   };
 
   const playWithId = async (id) => {
-    await setTrack(songsData[id]);
-    await audioRef.current.play();
-    setPlayStatus(true);
+    const selectedTrack = songsData[id];
+    if (selectedTrack) {
+      await setTrack(selectedTrack);
+      if (audioRef.current) {
+        audioRef.current.play();
+        setPlayStatus(true);
+      }
+    }
   };
 
   const previous = async () => {
     if (track && track.id > 0) {
-      await setTrack(songsData[track.id - 1]);
-      await audioRef.current.play();
-      setPlayStatus(true);
+      const previousTrack = songsData[track.id - 1];
+      if (previousTrack) {
+        await setTrack(previousTrack);
+        if (audioRef.current) {
+          audioRef.current.play();
+          setPlayStatus(true);
+        }
+      }
     }
   };
 
   const next = async () => {
     if (track && track.id < songsData.length - 1) {
-      await setTrack(songsData[track.id + 1]);
-      await audioRef.current.play();
-      setPlayStatus(true);
+      const nextTrack = songsData[track.id + 1];
+      if (nextTrack) {
+        await setTrack(nextTrack);
+        if (audioRef.current) {
+          audioRef.current.play();
+          setPlayStatus(true);
+        }
+      }
     }
   };
 
   const seekSong = async (e) => {
-    audioRef.current.currentTime =
-      (e.nativeEvent.offsetX / seekBg.current.offsetWidth) *
-      audioRef.current.duration;
+    if (audioRef.current && seekBg.current) {
+      audioRef.current.currentTime =
+        (e.nativeEvent.offsetX / seekBg.current.offsetWidth) *
+        audioRef.current.duration;
+    }
   };
 
   const getSongsData = async () => {
@@ -238,7 +259,7 @@ const PlayerContextProvider = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (audioRef.current) {
+      if (audioRef.current && seekBar.current) {
         audioRef.current.ontimeupdate = () => {
           seekBar.current.style.width =
             Math.floor(
@@ -281,7 +302,7 @@ const PlayerContextProvider = (props) => {
     next,
     seekSong,
     songsData,
-    albumsdata,
+    albumsData,
   };
 
   return (
